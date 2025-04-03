@@ -7,7 +7,7 @@ import 'package:real_time_websocket/websocket_service.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => DataProvider(service: RealtimeDataService())..startListening(),
+      create: (context) => DataProvider(service: RealtimeDataService()),
       child: MyApp(),
     ),
   );
