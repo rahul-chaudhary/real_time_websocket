@@ -15,21 +15,13 @@ class DataRouteScreen extends StatelessWidget {
         builder: (context, dataProvider, child) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text("Realtime Data Demo"),
+              title: const Text("Realtime Data"),
             ),
             body: Container(
               height: double.infinity,
               width: double.infinity,
               alignment: Alignment.center,
-              child: dataProvider.data != null
-                  ? Text(
-                dataProvider.data!.number, // Assuming `number` is a property in RealtimeDataModel
-                style: const TextStyle(fontSize: 24),
-              )
-                  : const Text(
-                "Connecting...",
-                style: TextStyle(fontSize: 24),
-              ),
+              child: Text(dataProvider.data?.number ?? "Connecting..."),
             ),
           );
         },
