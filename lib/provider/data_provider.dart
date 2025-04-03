@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../model/data.dart';
 import '../websocket_service.dart';
 
@@ -11,7 +9,7 @@ class DataProvider extends ChangeNotifier {
   RealtimeDataModel? _data;
 
   DataProvider({required this.service}) {
-    _streamController = StreamController<Map>();
+    _streamController = StreamController<Map>.broadcast();
   }
 
   RealtimeDataModel? get data => _data;
@@ -19,13 +17,15 @@ class DataProvider extends ChangeNotifier {
   void startListening() {
     service.start(_streamController);
     _streamController.stream.listen((data) {
+      print("Received Data: $data");  // Debugging
       _updateData(data);
     });
   }
 
   void _updateData(Map data) {
+    print("Updating Data: ${data.toString()}");  // Debugging
     _data = RealtimeDataModel.fromMap(data);
-    notifyListeners(); // Notifies the UI to rebuild
+    notifyListeners();
   }
 
   @override
@@ -34,3 +34,4 @@ class DataProvider extends ChangeNotifier {
     super.dispose();
   }
 }
+
