@@ -10,7 +10,7 @@ class DataRouteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<DataProvider>(
-      create: (_) => DataProvider(service: RealtimeDataService())..startListening(),
+      create: (_) => DataProvider(service: RealtimeDataService()),
       child: Consumer<DataProvider>(
         builder: (context, dataProvider, child) {
           return Scaffold(
